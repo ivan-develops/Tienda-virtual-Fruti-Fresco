@@ -70,7 +70,7 @@ body {
 
 }
 .hero {
-    background: url(/imgs/img-banner.jpg);
+    background: url(imgs/img-banner.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
