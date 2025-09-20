@@ -197,8 +197,12 @@ const containerFruta = document.getElementById('containerFruta');
 const containerVerdura = document.getElementById('containerVerdura');
 const containerTuberculo = document.getElementById('containerTuberculo');
 const containerAromatica = document.getElementById('containerAromatica');
-let carrito = [];
 
+let carrito = [];
+const btnCarrito = document.getElementById('btnCarrito');
+const modal = document.getElementById('modal');
+
+//* Presentar productos en array
 products.forEach((product) =>{
     let newProduct = document.createElement('article');
     newProduct.className = 'product';
@@ -208,16 +212,16 @@ products.forEach((product) =>{
         <h3 class="product__name">${product.name}</h3>
         <p class="product__description">${product.description}</p>
         <div class="product__measureAndPrice">
-        <input type="number" class="product__quantity" min="0.5" max="20" value="0.5" step="0.5">
+        <input type="number" class="product__quantity" value="0.5" min="0.5" max="20" step="0.5">
         <p class="measure">Kg</p>
-        <p class="price measure" id="price">$${product.price}</p>         
+        <p class="price" id="price">$${product.price}</p>         
     `;
 
     //* Creación de botón '+ agregar' y asignar
-    let comprar = document.createElement('button');
-    comprar.className = 'btnComprar';
-    comprar.innerText = ' + Agregar ';
-    newProduct.appendChild(comprar);
+    let btnAgregar = document.createElement('button');
+    btnAgregar.className = 'btnComprar';
+    btnAgregar.innerText = ' + Agregar ';
+    newProduct.appendChild(btnAgregar);
 
     //* Asignar producto a su sección correspondiente, según subsección que pertenece
     if(product.subsection==='Fruta' || product.subsection==='Pulpa'){
@@ -234,19 +238,61 @@ products.forEach((product) =>{
     }
 
     //* listener botón agregar
-    comprar.addEventListener('click' , ()=>{
+    btnAgregar.addEventListener('click' , ()=>{
+
         carrito.push({
-            id: product.id,
-            name:product.name,
-            subsection:product.subsection,
-            description:product.description,
             quantity: '',
+            name:product.name,
             price:product.price,
             img:product.img,
         });
         console.log(carrito);
     });
+});
 
+
+btnCarrito.addEventListener('click' , () =>{
+    // * Encabezado modal
+    const modal__header = document.createElement('div');
+    modal__header.className = 'modal__header';
+    modal__header.innerHTML = `
+        <h1>Carrito</h1>
+    `;
+    modal.append(modal__header);
+    
+    //* btn cierre modal
+    const modal__btnClose = document.createElement('div');
+    modal__btnClose.className = 'modal__btnClose';
+    modal__btnClose.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+        </svg>
+    `;
+    modal__header.appendChild(modal__btnClose);
+
+    //* contenido de productos en carrito
+    carrito.forEach( (productCarrito) => {
+        const modal__contentProduct = document.createElement('div');
+        modal__contentProduct.className = 'modal__contentProduct';
+        modal__contentProduct.innerHTML = `
+            <img src="${productCarrito.img}">
+            <p>${productCarrito.name}</p>
+            <p>${productCarrito.price}</p>
+        `;
+        modal.appendChild(modal__contentProduct);
+
+        //* btn Eliminar
+        const btnEliminar = document.createElement('button');
+        btnEliminar.className = 'btnEliminar';
+        btnEliminar.textContent = 'Eliminar';
+        modal__contentProduct.appendChild(btnEliminar);
+
+        btnEliminar.addEventListener( 'click' , ()=> {
+             modal__contentProduct.remove();
+        })
+    }); 
+    
+    
 });
 
 
@@ -272,10 +318,3 @@ products.forEach((product) =>{
 //     description:'',
 //     img:'',
 // },
-
-
-
-
-
-
- 
