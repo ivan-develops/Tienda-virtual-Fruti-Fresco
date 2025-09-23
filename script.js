@@ -274,26 +274,31 @@ btnCarrito.addEventListener('click' , () =>{
     modal__header.appendChild(modal__btnClose);
 
     //* contenido de productos en carrito
-    carrito.forEach( (productCarrito) => {
-        const modal__contentProduct = document.createElement('div');
-        modal__contentProduct.className = 'modal__contentProduct';
-        modal__contentProduct.innerHTML = `
-            <img src="${productCarrito.img}">
-            <p>${productCarrito.name}</p>
-            <p>${productCarrito.price}</p>
-        `;
-        modal.appendChild(modal__contentProduct);
+    function renderCarrito () {
 
-        //* btn Eliminar
-        const btnEliminar = document.createElement('button');
-        btnEliminar.className = 'btnEliminar';
-        btnEliminar.textContent = 'Eliminar';
-        modal__contentProduct.appendChild(btnEliminar);
-
-        btnEliminar.addEventListener( 'click' , ()=> {
-            modal__contentProduct.remove();
-        })
-    }); 
+        carrito.forEach( (productCarrito) => {
+            const modal__contentProduct = document.createElement('div');
+            modal__contentProduct.className = 'modal__contentProduct';
+            modal__contentProduct.innerHTML = `
+                <img src="${productCarrito.img}">
+                <p>${productCarrito.name}</p>
+                <p>${productCarrito.price}</p>
+            `;
+            modal.appendChild(modal__contentProduct);
+    
+            //* btn Eliminar
+            const btnEliminar = document.createElement('button');
+            btnEliminar.className = 'btnEliminar';
+            btnEliminar.textContent = 'Eliminar';
+            modal__contentProduct.appendChild(btnEliminar);
+            btnEliminar.addEventListener( 'click' , ()=> {
+                modal__contentProduct.remove();
+                // carrito = carrito.filter(pro => pro.id !== productCarrito.id);
+            })
+        }); 
+        
+    }
+    
     
     
 });
