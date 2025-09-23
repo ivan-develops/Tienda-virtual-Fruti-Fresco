@@ -252,11 +252,13 @@ products.forEach((product) =>{
 
 
 btnCarrito.addEventListener('click' , () =>{
+    modal.innerHTML = '';
     // * Encabezado modal
+    modal.style.display = 'grid';
     const modal__header = document.createElement('div');
     modal__header.className = 'modal__header';
     modal__header.innerHTML = `
-        <h1>Carrito</h1>
+    <h1>Carrito</h1>
     `;
     modal.append(modal__header);
     
@@ -264,10 +266,11 @@ btnCarrito.addEventListener('click' , () =>{
     const modal__btnClose = document.createElement('div');
     modal__btnClose.className = 'modal__btnClose';
     modal__btnClose.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
-        </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free v5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
     `;
+    modal__btnClose.addEventListener('click' , () => {
+        modal.style.display = 'none';
+    });
     modal__header.appendChild(modal__btnClose);
 
     //* contenido de productos en carrito
@@ -288,7 +291,7 @@ btnCarrito.addEventListener('click' , () =>{
         modal__contentProduct.appendChild(btnEliminar);
 
         btnEliminar.addEventListener( 'click' , ()=> {
-             modal__contentProduct.remove();
+            modal__contentProduct.remove();
         })
     }); 
     
