@@ -241,7 +241,7 @@ products.forEach((product) =>{
     btnAgregar.addEventListener('click' , ()=>{
 
         carrito.push({
-            quantity: '',
+            id: product.id,
             name:product.name,
             price:product.price,
             img:product.img,
@@ -250,54 +250,54 @@ products.forEach((product) =>{
     });
 });
 
+const modal__btnClose = document.getElementById('modal__btnClose');
+const modalContainer = document.getElementById('modal-container');
+const modal__content = document.getElementById('modal__content');
+
+// modalContainer.addEventListener('click' , ()=>modalContainer.classList.remove('active'));
+
 
 btnCarrito.addEventListener('click' , () =>{
-    modal.innerHTML = '';
-    // * Encabezado modal
-    modal.style.display = 'grid';
-    const modal__header = document.createElement('div');
-    modal__header.className = 'modal__header';
-    modal__header.innerHTML = `
-    <h1>Carrito</h1>
-    `;
-    modal.append(modal__header);
+
+    // modalContainer.style.visibility = 'visible';
+    modalContainer.classList.toggle('active');
     
     //* btn cierre modal
-    const modal__btnClose = document.createElement('div');
-    modal__btnClose.className = 'modal__btnClose';
-    modal__btnClose.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free v5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
-    `;
     modal__btnClose.addEventListener('click' , () => {
-        modal.style.display = 'none';
+        // modalContainer.style.visibility = 'hidden';
+        modalContainer.classList.remove('active');
     });
-    modal__header.appendChild(modal__btnClose);
 
     //* contenido de productos en carrito
     function renderCarrito () {
 
-        carrito.forEach( (productCarrito) => {
-            const modal__contentProduct = document.createElement('div');
-            modal__contentProduct.className = 'modal__contentProduct';
-            modal__contentProduct.innerHTML = `
+        modal__content.innerHTML = '';
+
+        carrito.forEach( productCarrito => {
+            const modal__product = document.createElement('div');
+            modal__product.className = 'modal__contentProduct';
+            modal__product.innerHTML = `
                 <img src="${productCarrito.img}">
                 <p>${productCarrito.name}</p>
                 <p>${productCarrito.price}</p>
             `;
-            modal.appendChild(modal__contentProduct);
+            modal__content.appendChild(modal__product);
     
             //* btn Eliminar
             const btnEliminar = document.createElement('button');
             btnEliminar.className = 'btnEliminar';
             btnEliminar.textContent = 'Eliminar';
-            modal__contentProduct.appendChild(btnEliminar);
+            modal__product.appendChild(btnEliminar);
             btnEliminar.addEventListener( 'click' , ()=> {
-                modal__contentProduct.remove();
-                // carrito = carrito.filter(pro => pro.id !== productCarrito.id);
+                console.log("seleccionaste: " + productCarrito.name);
+                carrito = carrito.filter(pro => pro.id !== productCarrito.id);
+                renderCarrito();
             })
         }); 
         
+
     }
+    renderCarrito();
     
     
     
