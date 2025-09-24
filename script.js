@@ -203,7 +203,7 @@ const btnCarrito = document.getElementById('btnCarrito');
 const modal = document.getElementById('modal');
 
 //* Presentar productos en array
-products.forEach((product) =>{
+products.forEach((product , index ) =>{
     let newProduct = document.createElement('article');
     newProduct.className = 'product';
     newProduct.innerHTML = `
@@ -212,7 +212,7 @@ products.forEach((product) =>{
         <h3 class="product__name">${product.name}</h3>
         <p class="product__description">${product.description}</p>
         <div class="product__measureAndPrice">
-        <input type="number" class="product__quantity" value="0.5" min="0.5" max="20" step="0.5">
+        <input type="number" class="product__quantity" id="product__quantity-${index}" value="1" min="1" max="10" step="0.5">
         <p class="measure">Kg</p>
         <p class="price" id="price">$${product.price}</p>         
     `;
@@ -239,11 +239,14 @@ products.forEach((product) =>{
 
     //* listener botón agregar
     btnAgregar.addEventListener('click' , ()=>{
-
+        //* captura input number
+        const cantidad = parseFloat(document.getElementById(`product__quantity-${index}`).value);
+        
         carrito.push({
             id: product.id,
             name:product.name,
-            price:product.price,
+            price:product.price * cantidad,
+            quantity: cantidad,
             img:product.img,
         });
         console.log(carrito);
@@ -253,6 +256,7 @@ products.forEach((product) =>{
 const modal__btnClose = document.getElementById('modal__btnClose');
 const modalContainer = document.getElementById('modal-container');
 const modal__content = document.getElementById('modal__content');
+const modal__total = document.getElementById('modal__total');
 
 // modalContainer.addEventListener('click' , ()=>modalContainer.classList.remove('active'));
 
@@ -275,11 +279,11 @@ btnCarrito.addEventListener('click' , () =>{
 
         carrito.forEach( productCarrito => {
             const modal__product = document.createElement('div');
-            modal__product.className = 'modal__contentProduct';
+            modal__product.className = 'modal__product';
             modal__product.innerHTML = `
                 <img src="${productCarrito.img}">
                 <p>${productCarrito.name}</p>
-                <p>${productCarrito.price}</p>
+                <p>${productCarrito.quantity}Kg $${productCarrito.price}</p>
             `;
             modal__content.appendChild(modal__product);
     
@@ -288,13 +292,29 @@ btnCarrito.addEventListener('click' , () =>{
             btnEliminar.className = 'btnEliminar';
             btnEliminar.textContent = 'Eliminar';
             modal__product.appendChild(btnEliminar);
+            
             btnEliminar.addEventListener( 'click' , ()=> {
                 console.log("seleccionaste: " + productCarrito.name);
                 carrito = carrito.filter(pro => pro.id !== productCarrito.id);
                 renderCarrito();
-            })
+            });
+            //* Suma valor productos
+            let total = carrito.reduce( (acumulador, producto) => {
+                return acumulador + producto.price }, 0);
+                console.log('Total carrito: $' + total);
+            modal__total.innerHTML = `
+                Total a pagar : $ ${total} `;
         }); 
         
+        //* Muestra que esta vacio 
+        if (carrito.length === 0) {
+            modal__content.innerHTML = `
+            <div class="modal__content-vacio">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="400" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 80h64l48 272h256"/><path d="M160 288h249.44a8 8 0 007.85-6.43l28.8-144a8 8 0 00-7.85-9.57H128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                <p>Vacío</p>
+            <div/>`;
+            
+        }
 
     }
     renderCarrito();
