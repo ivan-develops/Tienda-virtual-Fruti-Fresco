@@ -214,7 +214,7 @@ products.forEach((product , index ) =>{
         <div class="product__measureAndPrice">
         <input type="number" class="product__quantity" id="product__quantity-${index}" value="1" min="1" max="10" step="0.5">
         <p class="measure">Kg</p>
-        <p class="price" id="price">$${product.price}</p>         
+        <p class="price" id="price-${index}">$${product.price}</p>         
     `;
 
     //* Creación de botón '+ agregar' y asignar
@@ -251,6 +251,15 @@ products.forEach((product , index ) =>{
         });
         console.log(carrito);
     });
+    //* PRUEBA CHECKBOX Kg y Lb
+    // const btnWeight = document.getElementById('btnWeight');
+
+    // btnWeight.addEventListener( 'click' , ()=>{
+    //     product.price = product.price / 2.2;
+
+    // });
+    
+
 });
 
 const modal__btnClose = document.getElementById('modal__btnClose');
@@ -317,9 +326,7 @@ btnCarrito.addEventListener('click' , () =>{
         }
 
     }
-    renderCarrito();
-    
-    
+    renderCarrito();    
     
 });
 
