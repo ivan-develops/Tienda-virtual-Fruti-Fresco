@@ -250,6 +250,17 @@ products.forEach((product , index ) =>{
             img:product.img,
         });
         console.log(carrito);
+
+        // *Toastify - notificaciones flotantes
+        Toastify({
+            text: `✅ ${cantidad} kg de <b>${product.name} agregado</b> al carrito`,
+            duration: 2900,
+            escapeMarkup: false, // Permite usar HTML
+            backgroundColor: "hsl(72, 72%, 47%)",
+            gravity: "bottom", // "top" o "bottom"
+            position: "right", // "left", "center" o "right"
+        }).showToast();
+
     });
     //* PRUEBA CHECKBOX Kg y Lb
     // const btnWeight = document.getElementById('btnWeight');
@@ -330,26 +341,10 @@ btnCarrito.addEventListener('click' , () =>{
     
 });
 
+const btnMenu = document.getElementById('btnMenu');
+const nav = document.getElementById('nav');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     {
-//     id:,
-//     name:'',
-//     subsection:'',
-//     description:'',
-//     img:'',
-// },
+btnMenu.addEventListener('click' , ()=> {
+    nav.classList.toggle('active');
+    // nav.children;
+});
