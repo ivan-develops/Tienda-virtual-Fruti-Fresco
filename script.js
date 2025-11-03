@@ -270,16 +270,12 @@ products.forEach((product , index ) =>{
 
     // });
     
-
 });
 
 const modal__btnClose = document.getElementById('modal__btnClose');
 const modalContainer = document.getElementById('modal-container');
 const modal__content = document.getElementById('modal__content');
 const modal__total = document.getElementById('modal__total');
-
-// modalContainer.addEventListener('click' , ()=>modalContainer.classList.remove('active'));
-
 
 btnCarrito.addEventListener('click' , () =>{
 
@@ -288,7 +284,6 @@ btnCarrito.addEventListener('click' , () =>{
     
     //* btn cierre modal
     modal__btnClose.addEventListener('click' , () => {
-        // modalContainer.style.visibility = 'hidden';
         modalContainer.classList.remove('active');
     });
 
@@ -324,6 +319,7 @@ btnCarrito.addEventListener('click' , () =>{
                 console.log('Total carrito: $' + total);
             modal__total.innerHTML = `
                 Total a pagar : $ ${total} `;
+            
         }); 
         
         //* Muestra que esta vacio 
