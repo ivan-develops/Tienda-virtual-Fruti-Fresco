@@ -199,22 +199,21 @@ const containerTuberculo = document.getElementById('containerTuberculo');
 const containerAromatica = document.getElementById('containerAromatica');
 
 let carrito = [];
-const btnCarrito = document.getElementById('btnCarrito');
-const modal = document.getElementById('modal');
 
 //* Presentar productos en array
 products.forEach((product , index ) =>{
     let newProduct = document.createElement('article');
     newProduct.className = 'product';
     newProduct.innerHTML = `
-    <div class="product__subsection">${product.subsection}</div>
+        <div class="product__subsection">${product.subsection}</div>
         <div class="product__img"><img src="${product.img}" alt="${product.name}"></div>
         <h3 class="product__name">${product.name}</h3>
         <p class="product__description">${product.description}</p>
         <div class="product__measureAndPrice">
-        <input type="number" class="product__quantity" id="product__quantity-${index}" value="1" min="1" max="10" step="0.5">
-        <p class="measure">Kg</p>
-        <p class="price" id="price-${index}">$${product.price}</p>         
+            <input type="number" class="product__quantity" id="product__quantity-${index}" value="1" min="1" max="10" step="0.5">
+            <p class="measure">Kg</p>
+            <p class="price" id="price-${index}">$${product.price}</p>
+        </div>       
     `;
 
     //* Creación de botón '+ agregar' y asignar
@@ -272,14 +271,15 @@ products.forEach((product , index ) =>{
     
 });
 
-const modal__btnClose = document.getElementById('modal__btnClose');
 const modalContainer = document.getElementById('modal-container');
+const modal = document.getElementById('modal');
 const modal__content = document.getElementById('modal__content');
 const modal__total = document.getElementById('modal__total');
+const modal__btnClose = document.getElementById('modal__btnClose');
+const btnCarrito = document.getElementById('btnCarrito');
 
 btnCarrito.addEventListener('click' , () =>{
 
-    // modalContainer.style.visibility = 'visible';
     modalContainer.classList.toggle('active');
     
     //* btn cierre modal
@@ -309,18 +309,19 @@ btnCarrito.addEventListener('click' , () =>{
             modal__product.appendChild(btnEliminar);
             
             btnEliminar.addEventListener( 'click' , ()=> {
-                console.log("seleccionaste: " + productCarrito.name);
+                console.log("eliministe: " + productCarrito.name);
                 carrito = carrito.filter(pro => pro.id !== productCarrito.id);
                 renderCarrito();
             });
-            //* Suma valor productos
-            let total = carrito.reduce( (acumulador, producto) => {
-                return acumulador + producto.price }, 0);
-                console.log('Total carrito: $' + total);
-            modal__total.innerHTML = `
-                Total a pagar : $ ${total} `;
+
             
         }); 
+        //* Suma valor productos
+        let total = carrito.reduce( (acumulador, producto) => {
+            return acumulador + producto.price }, 0);
+            console.log('Total carrito: $' + total);
+        modal__total.innerHTML = `
+            Total a pagar : $ ${total} `;
         
         //* Muestra que esta vacio 
         if (carrito.length === 0) {
