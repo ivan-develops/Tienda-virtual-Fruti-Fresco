@@ -241,13 +241,20 @@ products.forEach((product , index ) =>{
         //* captura input number
         const cantidad = parseFloat(document.getElementById(`product__quantity-${index}`).value);
         
-        carrito.push({
-            id: product.id,
-            name:product.name,
-            price:product.price * cantidad,
-            quantity: cantidad,
-            img:product.img,
-        });
+        //* se verifica si existe en carrito para agregar cantidad, sino, se agrega nuevo objeto a carrito
+        const existente = carrito.find(item => item.id === product.id);
+        if (existente) {
+            existente.quantity += cantidad;
+            existente.price += product.price * cantidad;
+        } else {
+            carrito.push({
+                id: product.id,
+                name: product.name,
+                price: product.price * cantidad,
+                quantity: cantidad,
+                img: product.img,
+            });
+}
         console.log(carrito);
 
         // *Toastify - notificaciones flotantes
@@ -287,11 +294,11 @@ btnCarrito.addEventListener('click' , () =>{
         modalContainer.classList.remove('active');
     });
 
-    //* contenido de productos en carrito
     function renderCarrito () {
-
+        
         modal__content.innerHTML = '';
-
+        
+        //* contenido de productos en carrito
         carrito.forEach( productCarrito => {
             const modal__product = document.createElement('div');
             modal__product.className = 'modal__product';
@@ -316,10 +323,10 @@ btnCarrito.addEventListener('click' , () =>{
 
             
         }); 
+        
         //* Suma valor productos
         let total = carrito.reduce( (acumulador, producto) => {
             return acumulador + producto.price }, 0);
-            console.log('Total carrito: $' + total);
         modal__total.innerHTML = `
             Total a pagar : $ ${total} `;
         
