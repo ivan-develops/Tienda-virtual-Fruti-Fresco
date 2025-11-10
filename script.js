@@ -11,6 +11,8 @@ const modalContainer = document.getElementById('modal-container');
 const modal__content = document.getElementById('modal__content');
 const modal__total = document.getElementById('modal__total');
 const modal__btnClose = document.getElementById('modal__btnClose');
+const contadorCarrito = document.getElementById('contadorCarrito');
+
 
 //* Presentar productos del array
 products.forEach((product , index ) =>{
@@ -58,6 +60,7 @@ products.forEach((product , index ) =>{
         if (existente) {
             existente.quantity += cantidad;
             existente.price += product.price * cantidad;
+
         } else {
             carrito.push({
                 id: product.id,
@@ -67,7 +70,8 @@ products.forEach((product , index ) =>{
                 img: product.img,
             });
         }
-        console.log(carrito);
+        
+        contandoProducts();
 
         // *Toastify - notificaciones flotantes
         Toastify({
@@ -86,47 +90,60 @@ products.forEach((product , index ) =>{
 //* Carrito
 function renderCarrito () {
         
-        modal__content.innerHTML = '';
-        
-        //* Muestra que carrito esta vacio 
-        if (carrito.length === 0) {
-            modal__content.innerHTML = `
-            <div class="modal__content-vacio">
-                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="400" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 80h64l48 272h256"/><path d="M160 288h249.44a8 8 0 007.85-6.43l28.8-144a8 8 0 00-7.85-9.57H128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
-                <p>Vacío</p>
-            <div/>`;
-        }
-
-        //* Si no, renderiza contenido de productos en carrito
-        carrito.forEach( productCarrito => {
-            const modal__product = document.createElement('div');
-            modal__product.className = 'modal__product';
-            modal__product.innerHTML = `
-                <img src="${productCarrito.img}">
-                <p>${productCarrito.name}</p>
-                <p>${productCarrito.quantity}Kg $${productCarrito.price}</p>
-            `;
-            
-            //* btn Eliminar
-            const btnEliminar = document.createElement('button');
-            btnEliminar.className = 'btnEliminar';
-            btnEliminar.textContent = 'Eliminar';
-            
-            btnEliminar.addEventListener( 'click' , ()=> {
-                console.log("eliministe: " + productCarrito.name);
-                carrito = carrito.filter(pro => pro.id !== productCarrito.id);
-                renderCarrito();
-            });
-            
-            modal__product.appendChild(btnEliminar);
-            modal__content.appendChild(modal__product);
-        }); 
-        
-        //* Calcular Total
-        const total = carrito.reduce((acc, prod) => acc + prod.price, 0);
-        modal__total.textContent = `Total a pagar: $${total}`;
-
+    modal__content.innerHTML = '';
+    
+    //* Muestra que carrito esta vacio 
+    if (carrito.length === 0) {
+        modal__content.innerHTML = `
+        <div class="modal__content-vacio">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="400" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 80h64l48 272h256"/><path d="M160 288h249.44a8 8 0 007.85-6.43l28.8-144a8 8 0 00-7.85-9.57H128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+            <p>Vacío</p>
+        <div/>`;
     }
+
+    //* Si no, renderiza contenido de productos en carrito
+    carrito.forEach( productCarrito => {
+        const modal__product = document.createElement('div');
+        modal__product.className = 'modal__product';
+        modal__product.innerHTML = `
+            <img src="${productCarrito.img}">
+            <p>${productCarrito.name}</p>
+            <p>${productCarrito.quantity}Kg $${productCarrito.price}</p>
+        `;
+        
+        //* btn Eliminar
+        const btnEliminar = document.createElement('button');
+        btnEliminar.className = 'btnEliminar';
+        btnEliminar.textContent = 'Eliminar';
+        
+        btnEliminar.addEventListener( 'click' , ()=> {
+            console.log("eliministe: " + productCarrito.name);
+            carrito = carrito.filter(pro => pro.id !== productCarrito.id);
+            renderCarrito();
+            contandoProducts();
+
+        });
+        
+        modal__product.appendChild(btnEliminar);
+        modal__content.appendChild(modal__product);
+    }); 
+    
+    //* Calcular Total
+    const total = carrito.reduce((acc, prod) => acc + prod.price, 0);
+    modal__total.textContent = `Total a pagar: $${total}`;
+
+}
+
+function contandoProducts() {
+    if (carrito.length===0) {
+        contadorCarrito.classList.remove('active');
+        contadorCarrito.textContent = '';
+    }
+    else if (carrito.length > 0){
+        contadorCarrito.textContent = carrito.length;
+        contadorCarrito.classList.add('active');
+    }
+};
 
 //* btns abrir y cerrar carrito
 btnCarrito.addEventListener('click' , () =>{

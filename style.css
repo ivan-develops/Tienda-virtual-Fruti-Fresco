@@ -144,9 +144,28 @@ body {
     color:var(--blanco-crema);
     border: none;
     transition: all 0.3s ease;
+    position: relative;
 
     &:hover {
         box-shadow: 0 0 1rem var(--blanco-crema);
+    }
+    .contadorCarrito {
+        background: var(--verde-oscuro);
+        color: var(--verde-oscuro);
+        position: absolute;
+        top: -1rem;
+        right: -1rem;
+        border-radius: 50%;
+        width: 1.2rem;
+        height: 1.2rem;
+        font-weight: 800;
+        transition: all 0.3s ease-in;
+        transform: scale(0);
+        
+        &.active {
+            background: var(--verde-claro);
+            transform: scale(1);
+        }
     }
 }
 .hero {
