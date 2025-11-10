@@ -21,24 +21,20 @@ Este proyecto corresponde a un ejercicio académico. Aplicación de tienda onlin
 ## 🛠️ Tecnologías utilizadas
 
 - **HTML5**
-- **CSS3 (Flexbox / Grid / Animaciones)**
-- **JavaScript (ES6+)**
+- **CSS3**
+- **JavaScript**
 
 ---
 
 ## 🎯 Características
 
-- ✅ Dispone de menú principal con cuatro secciones, cada una con productos clasificados por subsecciones usando etiquetas o tags en su tarjeta.
-
-- ✅ Cada producto incluye imagen descriptiva, nombre y breve reseña para reforzar la semántica y accesibilidad.
-
 - ✅ Se desarrolla un carrito de compras en ventana modal, el cual se actualiza dinámicamente al agregar o eliminar productos.
 
 - ✅ El carrito realiza el cálculo automático de la suma de precios, respondiendo a la lógica de una tienda en línea.
 
-- ✅ Se utilizan HTML, CSS y JavaScript para la construcción, priorizando la semántica del marcado HTML.
+- ✅ _badge de notificación_ o _cart badge_ indicador visual pequeño, un círculo o burbuja, que muestra un conteo de productos agregados.
 
-- ✅ Se incorporan microinteracciones como estados hover y active con transiciones para mejorar la experiencia de usuario.
+- ✅ incorpora un _toast_ con notificaciones temporales al agregar producto. (usando librería Tostify-js).
 
 - ✅ El diseño es responsive, adaptándose a escritorio, tablet y celular.
 
