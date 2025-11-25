@@ -13,7 +13,6 @@ const modal__total = document.getElementById('modal__total');
 const modal__btnClose = document.getElementById('modal__btnClose');
 const contadorCarrito = document.getElementById('contadorCarrito');
 
-
 //* Presentar productos del array
 products.forEach((product , index ) =>{
     let newProduct = document.createElement('article');
@@ -161,4 +160,11 @@ const nav = document.getElementById('nav');
 
 btnMenu.addEventListener('click' , ()=> {
     nav.classList.toggle('active');
+});
+
+//* Cierre menú despues de seleccionar un link del menú
+document.querySelectorAll('#nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        nav.classList.remove('active'); // Cierra el menú
+    });
 });
