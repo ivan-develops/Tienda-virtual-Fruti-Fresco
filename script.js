@@ -13,13 +13,6 @@ const modal__total = document.getElementById('modal__total');
 const modal__btnClose = document.getElementById('modal__btnClose');
 const contadorCarrito = document.getElementById('contadorCarrito');
 
-//* Formatear precios peso colombiano (con constructor Intl.NumberFormat, se crea una instancia que contiene un objeto para ajustar caracteristicas)
-const formatearCOP = new Intl.NumberFormat('es-CO', {
-  style: 'currency',
-  currency: 'COP',
-  minimumFractionDigits: 0, // evita los decimales ',00' en #s enteros
-});
-
 
 //* Presentar productos del array 'products'
 products.forEach((product , index ) =>{
@@ -33,7 +26,7 @@ products.forEach((product , index ) =>{
         <div class="product__measureAndPrice">
             <input type="number" class="product__quantity" id="product__quantity-${index}" value="1" min="1" max="10" step="0.5">
             <p class="measure">Kg</p>
-            <p class="price" id="price-${index}">${formatearCOP.format(product.price)}</p>
+            <p class="price" id="price-${index}">${formatearCOP(product.price)}</p>
         </div>       
     `;
 
@@ -118,7 +111,7 @@ function renderCarrito () {
         modal__product.innerHTML = `
             <img src="${productCarrito.img}">
             <p>${productCarrito.name}</p>
-            <p>${productCarrito.quantity}Kg ${formatearCOP.format(productCarrito.price)}</p>
+            <p>${productCarrito.quantity}Kg ${formatearCOP(productCarrito.price)}</p>
         `;
         
         //* btn Eliminar
@@ -140,7 +133,7 @@ function renderCarrito () {
     
     //* Calcular Total
     const total = carrito.reduce((acc, prod) => acc + prod.price, 0);
-    modal__total.textContent = `Total a pagar: ${formatearCOP.format(total)}`;
+    modal__total.textContent = `Total a pagar: ${formatearCOP(total)}`;
 
 }
 
@@ -182,8 +175,14 @@ document.querySelectorAll('#nav a').forEach(link => {
     });
 });
 
-
-
-
-
-
+//* Formatear precios peso colombiano (con constructor Intl.NumberFormat, se crea una instancia que contiene un objeto para ajustar caracteristicas)
+function formatearCOP(valor) {
+  return new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    minimumFractionDigits: 0,
+    currencyDisplay: "narrowSymbol", // ← esto quita el espacio
+  })
+  .format(valor)
+  .replace(/\s+/g, ""); // quita espacios;
+}
