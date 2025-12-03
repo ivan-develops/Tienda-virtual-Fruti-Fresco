@@ -4,7 +4,7 @@ export const products = [
     name: 'Banano',
     subsection: 'Fruta',
     description: 'fuente natural de energía, dulce y práctico.',
-    price: 1500,
+    price: 3600,
     img: './data/imgProducts/Frutas-banano.jpg',
 },
 {
@@ -12,7 +12,7 @@ export const products = [
     name:'Manzana',
     subsection:'Fruta',
     description:'crujiente y deliciosa, ideal para cualquier momento.',
-    price: 1500,
+    price: 12000,
     img:'./data/imgProducts/Frutas-manzana.jpg',
 },
 {
@@ -20,7 +20,7 @@ export const products = [
     name:'Naranja',
     subsection:'Fruta',
     description:'jugosa y refrescante, llena de vitamina C.',
-    price: 1500,
+    price: 3850,
     img:'./data/imgProducts/Frutas-naranja.jpg',
 },
 {
@@ -28,7 +28,7 @@ export const products = [
     name:'Guanábana',
     subsection:'Pulpa',
     description:'pulpa suave y refrescante con un toque ácido.',
-    price: 1500,
+    price: 7000,
     img:'./data/imgProducts/Frutas-guanabana.jpg',
 },
 {
@@ -36,7 +36,7 @@ export const products = [
     name:'Feijoa',
     subsection:'Pulpa',
     description:'exótica, fragante y naturalmente dulce.',
-    price: 1500,
+    price: 12000,
     img:'./data/imgProducts/Frutas-feijoa.jpg',
 },
 {
@@ -44,7 +44,7 @@ export const products = [
     name:'Maracuyá',
     subsection:'Pulpa',
     description:'aroma intenso y sabor tropical único.',
-    price: 1500,
+    price: 7200,
     img:'./data/imgProducts/Frutas-maracuya.jpg',
 },
 {
@@ -52,7 +52,7 @@ export const products = [
     name:'Espinaca',
     subsection:'Hojas',
     description:'fresca y nutritiva, rica en hierro.',
-    price: 1500,
+    price: 7000,
     img:'./data/imgProducts/Verduras-espinaca.jpg',
 },
 {
@@ -60,7 +60,7 @@ export const products = [
     name:'Lechuga',
     subsection:'Hojas',
     description:'ligera, crujiente y perfecta para ensaladas.',
-    price: 1500,
+    price: 6600,
     img:'./data/imgProducts/Verduras-lechuga.jpg',
 },
 {
@@ -68,7 +68,7 @@ export const products = [
     name:'Acelga',
     subsection:'Hojas',
     description:'hojas verdes versátiles y llenas de fibra.',
-    price: 1500,
+    price: 7200,
     img:'./data/imgProducts/Verduras-acelga.jpg',
 },
 {
@@ -76,7 +76,7 @@ export const products = [
     name:'Tomate',
     subsection:'Fruto hortaliza',
     description:'jugoso, fresco y base de muchas recetas.',
-    price: 1500,
+    price: 3100,
     img:'./data/imgProducts/Verduras-tomate.jpg',
 },
 {
@@ -84,7 +84,7 @@ export const products = [
     name:'Aguacate',
     subsection:'Fruto hortaliza',
     description:'cremoso, saludable y lleno de sabor.',
-    price: 1500,
+    price: 8500,
     img:'./data/imgProducts/Verduras-aguacate.jpg',
 },
 {
@@ -92,7 +92,7 @@ export const products = [
     name:'Ahuyama',
     subsection:'Fruto hortaliza',
     description:'dulce y suave, ideal para sopas y purés.',
-    price: 1500,
+    price: 3400,
     img:'./data/imgProducts/Verduras-ahuyama.jpg',
 },
 {
@@ -100,7 +100,7 @@ export const products = [
     name:'Papa criolla',
     subsection:'Raíz',
     description:'pequeña y tierna, perfecta para sopas.',
-    price: 1500,
+    price: 9000,
     img:'./data/imgProducts/Tuberculos-criolla.jpg',
 },
 {
@@ -108,7 +108,7 @@ export const products = [
     name:'Jengibre',
     subsection:'Raíz',
     description:'aromático y picante, ideal para infusiones.',
-    price: 1500,
+    price: 18500,
     img:'./data/imgProducts/Tuberculos-jengibre.jpg',
 },
 {
@@ -116,7 +116,7 @@ export const products = [
     name:'Papa sabanera',
     subsection:'Raíz',
     description:'versátil y sabrosa, la clásica de la cocina.',
-    price: 1500,
+    price: 2400,
     img:'./data/imgProducts/Tuberculos-sabanera.jpg',
 },
 {
@@ -124,7 +124,7 @@ export const products = [
     name:'Yuca',
     subsection:'Tallo',
     description:'suave y deliciosa, gran acompañante de comidas.',
-    price: 1500,
+    price: 5100,
     img:'./data/imgProducts/Tuberculos-yuca.jpg',
 },
 {
@@ -132,7 +132,7 @@ export const products = [
     name:'Zanahoria',
     subsection:'Tallo',
     description:'dulce, crujiente y llena de vitaminas.',
-    price: 1500,
+    price: 3600,
     img:'./data/imgProducts/Tuberculos-zanahoria.jpg',
 },
 {
@@ -140,7 +140,7 @@ export const products = [
     name:'Remolacha',
     subsection:'Tallo',
     description:'colorida y nutritiva, con un sabor terroso.',
-    price: 1500,
+    price: 2400,
     img:'./data/imgProducts/Tuberculos-remolacha.jpg',
 },
 {
@@ -148,7 +148,7 @@ export const products = [
     name:'Orégano',
     subsection:'Condimento',
     description:'aromático y esencial en muchas recetas.',
-    price: 1500,
+    price: 20000,
     img:'./data/imgProducts/Aromaticas-oregano.jpg',
 },
 {
@@ -156,7 +156,7 @@ export const products = [
     name:'Pimienta',
     subsection:'Condimento',
     description:'toque picante que realza los sabores.',
-    price: 1500,
+    price: 33400,
     img:'./data/imgProducts/Aromaticas-pimienta.jpg',
 },
 {
@@ -164,7 +164,7 @@ export const products = [
     name:'Cúrcuma',
     subsection:'Condimento',
     description:'raíz dorada con notas cálidas y medicinales.',
-    price: 1500,
+    price: 11200,
     img:'./data/imgProducts/Aromaticas-curcuma.jpg',
 },
 {
@@ -172,7 +172,7 @@ export const products = [
     name:'Manzanilla',
     subsection:'Hierba',
     description:'suave y calmante, ideal para infusiones.',
-    price: 1500,
+    price: 12500,
     img:'./data/imgProducts/Aromaticas-manzanilla.jpg',
 },
 {
@@ -180,7 +180,7 @@ export const products = [
     name:'Romero',
     subsection:'Hierba',
     description:'fragante y perfecto para carnes y guisos.',
-    price: 1500,
+    price: 21300,
     img:'./data/imgProducts/Aromaticas-romero.jpg',
 },
 {
@@ -188,7 +188,7 @@ export const products = [
     name:'Yerbabuena',
     subsection:'Hierba',
     description:'fresca y revitalizante, ideal para bebidas.',
-    price: 1500,
+    price: 13800,
     img:'./data/imgProducts/Aromaticas-yerbabuena.jpg',
 },
 ];
