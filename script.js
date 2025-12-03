@@ -13,7 +13,7 @@ const modal__total = document.getElementById('modal__total');
 const modal__btnClose = document.getElementById('modal__btnClose');
 const contadorCarrito = document.getElementById('contadorCarrito');
 
-//* Presentar productos del array
+//* Presentar productos del array 'products'
 products.forEach((product , index ) =>{
     let newProduct = document.createElement('article');
     newProduct.className = 'product';
@@ -80,6 +80,9 @@ products.forEach((product , index ) =>{
             backgroundColor: "hsl(72, 72%, 47%)",
             gravity: "bottom", // "top" o "bottom"
             position: "right", // "left", "center" o "right"
+            onClick: function(){
+                abrirCerrarCarrito();
+            },
         }).showToast();
 
     });
@@ -144,12 +147,14 @@ function contandoProducts() {
     }
 };
 
-//* btns abrir y cerrar carrito
-btnCarrito.addEventListener('click' , () =>{
+//* Abrir y cerrar carrito
+function abrirCerrarCarrito() {
     modalContainer.classList.toggle('active');   
-    renderCarrito();    
-});
-    
+    renderCarrito();   
+}
+
+btnCarrito.addEventListener('click' , abrirCerrarCarrito);
+  
 modal__btnClose.addEventListener('click' , () => {
     modalContainer.classList.remove('active');
 });
